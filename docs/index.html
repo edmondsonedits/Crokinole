@@ -3,9 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta http-equiv="refresh" content="0; url=../index.html">
+<meta name="theme-color" content="#17120e">
 <title>Crokinole</title>
-<style>html,body{margin:0;background:#17120e;color:#f7ead8;font-family:system-ui,sans-serif;min-height:100%;display:grid;place-items:center}main{text-align:center;padding:24px}a{color:#f2cb87}</style>
+<style>html,body{margin:0;background:#17120e;color:#f7ead8;font-family:system-ui,sans-serif;min-height:100%;display:grid;place-items:center}main{text-align:center;padding:24px;max-width:520px}.small{font-size:13px;color:#c4ae95}.err{color:#f2cb87;display:none}</style>
 </head>
-<body><main><h1>Loading Crokinole…</h1><p>If the game does not open automatically, <a href="../index.html">open the game</a>.</p></main><script>location.replace('../index.html'+location.search+location.hash)</script></body>
+<body><main><h1>Loading Crokinole…</h1><p class="small">Preparing the game from the repository.</p><p class="err" id="err">The game file could not be loaded. Refresh this page once.</p></main>
+<script>
+(async()=>{try{const r=await fetch('https://raw.githubusercontent.com/edmondsonedits/Crokinole/main/index.html?cache='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const html=await r.text();const blob=new Blob([html],{type:'text/html'});location.replace(URL.createObjectURL(blob));}catch(e){document.getElementById('err').style.display='block';console.error(e);}})();
+</script>
+</body>
 </html>
