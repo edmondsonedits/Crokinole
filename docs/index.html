@@ -1,15 +1,1 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#17120e">
-<title>Crokinole</title>
-<style>html,body{margin:0;background:#17120e;color:#f7ead8;font-family:system-ui,sans-serif;min-height:100%;display:grid;place-items:center}main{text-align:center;padding:24px;max-width:520px}.small{font-size:13px;color:#c4ae95}.err{color:#f2cb87;display:none}</style>
-</head>
-<body><main><h1>Loading Crokinole…</h1><p class="small">Preparing the game from the repository.</p><p class="err" id="err">The game file could not be loaded. Refresh this page once.</p></main>
-<script>
-(async()=>{try{const r=await fetch('https://raw.githubusercontent.com/edmondsonedits/Crokinole/main/index.html?cache='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const html=await r.text();const blob=new Blob([html],{type:'text/html'});location.replace(URL.createObjectURL(blob));}catch(e){document.getElementById('err').style.display='block';console.error(e);}})();
-</script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#100c09"><title>Crokinole Arcade</title><style>html,body{margin:0;min-height:100%;background:#100c09;color:#f9ead7;font-family:system-ui,sans-serif}body{min-height:100dvh;display:grid;place-items:center}.load{text-align:center;padding:30px}.disc{width:62px;height:62px;margin:0 auto 18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ef927f,#b94438 44%,#72281f 100%);box-shadow:0 10px 30px #0008;animation:spin 1s ease-in-out infinite alternate}.load b{font-size:19px}.load p{color:#c1aa90;font-size:12px}.err{color:#ff9c91}@keyframes spin{to{transform:translateY(-8px) rotate(18deg)}}</style></head><body><main class="load" id="loading"><div class="disc"></div><b>Loading Crokinole Arcade…</b><p>Classic · Challenges · Chaos · Adventure · Survival · Golf</p></main><script>(async()=>{try{const base='https://raw.githubusercontent.com/edmondsonedits/Crokinole/main/payload/';const parts=await Promise.all([1,2,3,4,5,6].map(async n=>{const r=await fetch(base+'part'+n+'.txt?v=3');if(!r.ok)throw new Error('Game payload '+n+' failed ('+r.status+')');return(await r.text()).trim()}));const bin=atob(parts.join(''));const bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));if(!('DecompressionStream'in window))throw new Error('This browser needs a newer version of Chrome to run the game.');const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));const html=await new Response(stream).text();if(!html.includes('<title>Crokinole Arcade</title>'))throw new Error('Game payload did not verify.');document.open();document.write(html);document.close()}catch(e){document.getElementById('loading').innerHTML='<div class="disc"></div><b class="err">Crokinole could not load</b><p>'+String(e.message||e)+'</p><p>Please refresh once. If this remains, the deployment is incomplete.</p>'}})();</script></body></html>
