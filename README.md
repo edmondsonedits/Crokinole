@@ -1,35 +1,31 @@
-# Crokinole
+# Crokinole Arcade
 
-A dependency-free browser Crokinole game built for desktop and mobile.
+A mobile-first browser Crokinole game with a tournament-style Classic mode plus digital-only arcade modes.
 
 ## Play
 
-Open `index.html` in a browser, or publish the repository with GitHub Pages.
+GitHub Pages: `https://edmondsonedits.github.io/Crokinole/`
 
-### Controls
+Controls: touch/click the highlighted shooting arc, drag backward like a slingshot, and release. A longer pull creates more power.
 
-1. Tap/click the highlighted outer shooting arc to place your disc.
-2. Press the disc and drag backward like a slingshot.
-3. Release to shoot. A longer pull creates more power.
+## Modes and systems
 
-## Modes
-
-- **1 Player:** Red vs CPU, with Easy, Normal, and Hard difficulty.
-- **2 Players:** Local pass-and-play, Red vs Blue.
-
-## Rules implemented
-
-- 8 discs per player per singles round.
-- Shots begin within the player's quadrant with the disc touching the outer shooting line.
-- If an opposing disc is in play, the shot must contact an opposing disc directly or by combination.
-- If no opposing disc is in play, the shot must play to the middle: an involved disc must finish in/touching the 15 circle or score a 20.
-- Invalid shots remove the shooting disc and same-colour discs involved in the shot.
-- Centre hole = 20; board zones = 15 / 10 / 5.
-- A disc touching a scoring line receives the lower score.
-- Four-round match scoring: 2 match points for a round win, 1 each for a tie.
-
-The gameplay model is based on the core singles rules published by the World Crokinole Championship.
+- **Classic** — 1-player CPU or local 2-player Crokinole with opponent-contact / play-to-the-middle shot validation.
+- **Trick Shot Challenges** — 12 escalating scenarios with persistent 1–3 star ratings.
+- **Style Shots** — detects peg banks, bank masters, chain reactions, contact-20s, and perfect 20s; style points persist locally.
+- **Arcade Chaos** — random board modifiers including ice, crosswind, moving/missing pegs, giant/tiny 20 holes, no-20 rounds, double tens, heavy discs, and super-bounce rounds.
+- **Adventure** — a roguelite run through five opponents/bosses with lives, upgrade choices, and persistent run wins.
+- **Bosses** — The Rookie, The Carpenter, The Iceman, The Sniper, and The Giant each change AI or board behavior.
+- **Special discs** — Heavy, Glass, Ghost, Sticky, Spring, and Magnet discs alongside normal discs.
+- **Survival** — enemy discs advance toward the centre after every shot; clear waves before your lives run out.
+- **4-Player Free-for-All** — local hot-seat play with Red, Blue, Green, and Gold shooting from four sides.
+- **Daily Challenge** — deterministic daily three-shot scenario with a locally saved best score.
+- **Customization** — Maple, Walnut, Northern Ice, Neon Arcade, and Cottage Pine boards plus Classic, Glass, Stone, and Neon disc skins.
+- **Replay / slow motion** — records the last shot and replays its physics trajectory.
+- **Crokinole Golf** — a nine-hole course with target cups, bumpers/hazards, and stroke scoring.
 
 ## Technical notes
 
-The entire game is contained in `index.html` and uses Canvas, Pointer Events, and Web Audio. No external libraries, images, fonts, APIs, or build process are required.
+The project remains dependency-free at runtime. The full tested game is compressed into six payload chunks and loaded by `index.html`; this keeps the GitHub connector deployment reliable while preserving the complete standalone Canvas/Web Audio game. The same loader is mirrored under `/docs` so either supported GitHub Pages branch source can serve the current build.
+
+Progress, challenge stars, customization, daily bests, adventure wins, and style points are stored with `localStorage` on the device.
